@@ -15,46 +15,9 @@
     </head>
 
     <body>
-        <nav class="nav-bar">
-            <span id="ham-menu-btn" class="fas fa-bars"></span>
-            <span class="title">Rent Item Form</span>
-            <div id="ham-menu-cont" class="menu-cont">
-                <div class="nav-menu-cont">
-                    <div class="close-cont">
-                        <h2>MENU</h2>
-                        <h2 id="ham-menu-close-btn" class="fas fa-times"></h2>
-                    </div>
-                    <ul class="nav-menu-list">
-                        <li>HOME</li>
-                        <li>CATALOGUE</li>
-                        <li>CATEGORIES</li>
-                        <li>ABOUT US</li>
-                        <li>CONTACT US</li>
-                    </ul>
-                </div>
-                <div id="back-dim" class="back-dim"></div>
-            </div>
-
-            <div class="desktop-nav-cont">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Catalogue</a></li>
-                    <li><a href="">Categories</a></li>
-                    <li><a href="">About us</a></li>
-                    <li><a href="">Contact us</a></li>
-                </ul>
-            </div>
-
-            <div class="right-nav-cont">
-                <span id="profile-nav">profile</span>
-                <div class="signupin-cont">
-                    <span id="sign-up">signup</span>
-                    <span>|</span>
-                    <span>login</span>
-                </div>
-            </div>
-
-        </nav>
+        <?php
+            include '../partials/navbar.php';
+        ?>
 
         <header>
             <h2><span class="fas fa-arrow-left"></span>Post Rental Item</h2>
