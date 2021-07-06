@@ -8,17 +8,25 @@
 
         <title>Rental System</title>
 
+        <link rel="stylesheet" href="../css/global.css">
         <link rel="stylesheet" href="../css/item-view.css">
+        <link rel="stylesheet" href="../css/hamburger.css">
     </head>
 
     <body>
-        <nav class="nav-bar">
-            <div>navbar</div>
-        </nav>
+        <?php
+            include '../partials/navbar.php';
+        ?>
 
         <header>
             <div class="gallery-cont">
-                gallery
+                <div class="item-view-return">
+                    <span class="fas fa-arrow-left"></span>
+                    <span>Return</span>
+                </div>
+                <div class="gallery-carousel">
+                    gallery
+                </div>
             </div>
 
             <div class="name-price-cont">
@@ -52,10 +60,15 @@
             <div class="main-section contact-cont">
                 <h4>Contact Details</h4>
                 <div class="contact-details">
+                    <span class="fas fa-mobile"></span>
                     <span>Phone</span>
                     <pre>xxxx-xx-xxx</pre>
+
+                    <span class="fas fa-phone"></span>
                     <span>Landline</span>
                     <pre>xxx-xxxx</pre>
+
+                    <span class="fas fa-envelope"></span>
                     <span>E-mail</span>
                     <pre>sample@email.com</pre>
                 </div>
@@ -79,6 +92,9 @@
         <footer>
             BSCS Project 2020
         </footer>
+
+        <script src="../js/hamburger.js"></script>
+        <script src="https://kit.fontawesome.com/2b03626812.js" crossorigin="anonymous"></script>
     </body>
 
 </html>
