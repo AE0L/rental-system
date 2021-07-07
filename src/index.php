@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,12 +19,14 @@
     <body>
 
         <?php
-            include './partials/navbar.php';
+            $title = 'Home';
+            include('./partials/navbar.php');
         ?>
         
         <main>
             <a href="./pages/item-view">item-view</a>
             <a href="./pages/sell-item">sell-item</a>
+            <a href="./pages/homepage">sell-item</a>
         </main>
 
         <footer>

@@ -1,6 +1,8 @@
 <nav class="nav-bar">
     <span id="ham-menu-btn" class="fas fa-bars"></span>
-    <span class="title">Item View</span>
+    <span class="title">
+        <?php echo $title; ?>
+    </span>
 
     <div id="ham-menu-cont" class="menu-cont">
         <div class="nav-menu-cont">
