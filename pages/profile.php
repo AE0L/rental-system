@@ -31,33 +31,39 @@
         </header>
 
         <main>
-            <div class="profile-cont">
-                <span class="username">@username</span>
+            <div class="profile-wrapper">
+                <div class="profile-cont">
+                    <div class="desktop-pfp">
+                        <img src="../img/pic.jpg" id="photo" width="125px" class="desktop-pfp-pic" alt="pfp">
+                    </div>
+                    <div class="username-cont">
+                        <span class="username">@username</span>
+                        <span class="seller-badge">seller</span>
+                    </div>
 
-                <span class="seller-badge">seller</span>
+                    <hr class="divider">
 
-                <hr class="divider">
+                    <div class="info-cont">
+                        <label for="name">Full Name</label>
+                        <span name="name">Juan B. Dela Cruz</span>
 
-                <div class="info-cont">
-                    <label for="name">Full Name</label>
-                    <span name="name">Juan B. Dela Cruz</span>
+                        <label for="location">Location</label>
+                        <span name="location">Quezon City</span>
 
-                    <label for="location">Location</label>
-                    <span name="location">Quezon City</span>
+                        <label for="email">Email</label>
+                        <span name="email">example@email.com</span>
 
-                    <label for="email">Email</label>
-                    <span name="email">example@email.com</span>
-
-                    <label for="contact">Contact</label>
-                    <span name="contact">xxxx-xxx-xxxx</span>
+                        <label for="contact">Contact</label>
+                        <span name="contact">xxxx-xxx-xxxx</span>
+                    </div>
                 </div>
             </div>
 
             <hr class="divider">
 
-            <h2>Rental Items</h2>
-
             <section class="rental-items-section">
+                <h2>Rental Items</h2>
+
                 <div class="items-cont">
                     <div class="item-card">
                         <div class="item-preview-cont">
