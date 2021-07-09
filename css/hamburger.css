@@ -33,7 +33,8 @@
 .nav-menu-cont {
     background: rgb(12, 12, 12);
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto 1fr auto;
+    box-shadow: 2px 0 12px 0 rgba(12, 12, 12, 0.5);
 }
 
 .close-cont {
