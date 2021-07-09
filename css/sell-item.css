@@ -1,0 +1,79 @@
+main,
+header {
+    padding: 1em 1.25em;
+}
+
+header .fas {
+    margin-right: 0.75em;
+}
+
+.rental-item-form {
+    display: grid;
+    row-gap: 0.75em;
+}
+
+input,
+select,
+textarea {
+    padding: 0.4em;
+    margin-bottom: 1em;
+}
+
+.form-btn-cont {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 2.5em;
+}
+
+.btn {
+    padding: 0.75em 1em;
+    background: rgb(12, 12, 12);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+
+    main,
+    header {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .rental-item-form {
+        grid-template-columns: auto 1fr auto 1fr;
+        column-gap: 1em;
+    }
+
+    #item-name,
+    #item-description,
+    #picture-gallery,
+    #features-cont,
+    #location,
+    #custom-address,
+    .form-btn-cont {
+        grid-column: 2/5;
+    }
+
+    label {
+        text-align: right;
+        align-self: center;
+        margin-bottom: 1em;
+    }
+
+    label[for="item-description"],
+    label[for="pictures"],
+    label[for="features"],
+    label[for="custom-address"] {
+        align-self: initial;
+    }
+
+    .form-btn-cont {
+        justify-self: right;
+    }
+
+    .btn {
+        width: 7.5em;
+    }
+}
