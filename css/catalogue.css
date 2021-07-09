@@ -171,7 +171,7 @@ img.item-preview {
     display: grid;
 }
 
-.app-filter {
+.prop-filter {
     display: grid;
 }
 
@@ -189,7 +189,13 @@ img.item-preview {
 
 .search-cont-desktop input[type="text"],
 .search-cont-desktop input[type="number"],
-.search-cont-desktop select {
+.search-cont-desktop select,
+.mobile-filter-cont input[type="text"],
+.mobile-filter-cont input[type="number"],
+.mobile-filter-cont select,
+.mobile-sort-cont input[type="text"],
+.mobile-sort-cont input[type="number"],
+.mobile-sort-cont select {
     padding: 0.4em 1em;
     font-size: 1em;
     border-radius: 5px;
@@ -223,7 +229,74 @@ img.item-preview {
     font-size: 14px;
 }
 
+.mobile-filter-cont,
+.mobile-sort-cont,
+.mobile-category-cont {
+    position: fixed;
+    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: white;
+    display: none;
+    flex-direction: column;
+}
 
+.mobile-filter-header,
+.mobile-sort-header,
+.mobile-category-header {
+    box-shadow: 1px 0 12px 0 rgba(12, 12, 12, 0.25);
+    padding: 0.75em;
+    font-size: 1.5em;
+}
+
+.mobile-filter-header .title,
+.mobile-sort-header .title,
+.mobile-category-header .title {
+    margin-left: 1em;
+}
+
+.mobile-filter-content,
+.mobile-sort-content,
+.mobile-category-content {
+    overflow: scroll;
+    padding: 1.5em 1em;
+    display: grid;
+    gap: 1.25em;
+}
+
+.mobile-filter-content:last-child {
+    margin-bottom: 2em;
+}
+
+.filter-button,
+.sort-button {
+    margin-top: 1em;
+    background: rgb(12, 12, 12);
+    border-radius: 10px;
+    color: white;
+    box-shadow: 1px 1px 12px 0 rgba(12, 12, 12, 0.25);
+    padding: 0.75em;
+}
+
+.mobile-category-content {
+    padding: 0;
+    gap: 0;
+}
+
+.category-item {
+    border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+    padding: 1.5em;
+    font-size: 1.1em;
+    transition-property: background, color;
+    transition-duration: 75ms;
+}
+
+.category-item:active {
+    background: rgb(12, 12, 12);
+    color: white;
+}
 
 @media only screen and (min-width: 768px) {
     body {
