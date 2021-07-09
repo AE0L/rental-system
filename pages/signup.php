@@ -29,6 +29,8 @@
                         <input type="password" name="password" id="password" placeholder="Password">
                         <input type="password" name="re-password" id="re-password" placeholder="Verify password">
                         <input type="tel" name="mobile" id="mobile" placeholder="Mobile No.">
+                        <input type="text" name="address-1" id="address-1" placeholder="Address 1">
+                        <input type="text" name="address-2" id="address-2" placeholder="Address 2">
 
                         <input type="submit" id="submit" value="Create account">
 
