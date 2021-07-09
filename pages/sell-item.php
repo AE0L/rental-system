@@ -16,6 +16,7 @@
 
     <body>
         <?php
+            $title = "Rent Item";
             include '../partials/navbar.php';
         ?>
 

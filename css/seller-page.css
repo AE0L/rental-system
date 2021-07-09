@@ -1,67 +1,79 @@
-	body, html {
+/*
+	body,
+	html {
 		height: 100vh;
 		width: 100%;
 		margin: 0;
 		font-family: sans-serif;
-		}
+	}
+
 	.header1 {
 		padding: 10px;
 		text-align: center;
 		background: #C4C4C4;
 		color: black;
 		font-size: 20px;
-		}
+	}
+
 	.header2 {
 		padding: 55px;
 		background: #7D7D7D;
-		}
+	}
+
 	.bodyc {
 		position: center;
 		text-align: center;
-		padding-top:75px;
+		padding-top: 75px;
 		float: center;
 		font-size: 20px;
 		color: #5F5F5F;
-		}
+	}
+
 	.solid {
 		height: 1px;
 		border-width: 0;
 		color: #BBB;
 		background-color: #BBB;
 		width: 70%;
-        margin-left: auto;
-        margin-right: auto;
-		}
+		margin-left: auto;
+		margin-right: auto;
+	}
+
 	.bg {
-		height: 100%; 
+		height: 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		}
+	}
+
 	.bodyl {
-		float:left;
-		width: 40%;	
+		float: left;
+		width: 40%;
 		padding: 55px;
 		font-size: 20px;
-		text-align: justify; 
+		text-align: justify;
 		color: #7F7F7F;
-		}
+	}
+
 	.bodyr {
 		float: right;
-		width: 55%;	
+		width: 55%;
 		padding: 60px;
 		font-size: 20px;
-		text-align: justify; 
+		text-align: justify;
 		color: #7F7F7F;
-		}		
+	}
+
 	img {
 		height: 200px;
-		}
+	}
+
 	* {
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
-		}
+	}
+
 	.profile-pic-div {
 		height: 150px;
 		width: 150px;
@@ -72,14 +84,17 @@
 		border-radius: 50%;
 		overflow: hidden;
 		border: 1px solid gray;
-		}
+	}
+
 	#photo {
 		height: 100%;
 		width: 100%;
-		}
+	}
+
 	#file {
 		display: none;
-		}
+	}
+
 	#uploadBtn {
 		height: 40px;
 		width: 100%;
@@ -88,34 +103,193 @@
 		left: 50%;
 		transform: translateX(-50%);
 		text-align: center;
-		background: rgba(0,0,0,0.7);
+		background: rgba(0, 0, 0, 0.7);
 		color: white;
-		line-height:30px;
+		line-height: 30px;
 		font-family: sans-serif;
 		font-size: 13px;
-		cursor: pointer; 
+		cursor: pointer;
 		display: none;
-		}
+	}
+
 	.edit-pic-div {
 		height: 25px;
 		width: 25px;
 		float: right;
 		margin-top: 0.5%;
 		margin-right: 0.5%;
-		}
+	}
+
 	#edit {
 		height: 100%;
 		width: 100%;
-		}
+	}
+
 	.back-pic-div {
 		height: 25px;
 		width: 25px;
 		float: left;
 		margin-top: 0.6%;
 		margin-left: 0.5%;
-		}
+	}
+
 	#back {
 		height: 100%;
 		width: 100%;
-		}
-		
+	}
+	*/
+
+header {
+	background: rgba(12, 12, 12, 0.5);
+}
+
+.pfp-wrapper {
+	position: relative;
+	height: 175px;
+}
+
+.pfp-pic {
+	position: absolute;
+	bottom: -100px;
+	left: calc(50% - 75px);
+	border-radius: 50%;
+}
+
+.pfp-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	padding: 1em;
+	width: 100%;
+	box-sizing: border-box;
+	background: rgba(12, 12, 12, 0.2);
+	box-shadow: 0 0 5px 5px rgba(12, 12, 12, 0.2);
+	color: #FAFAFA;
+	font-size: 1.2em;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+}
+
+.pfp-header .fa-arrow-left {
+	margin-right: 0.75em;
+}
+
+main {
+	margin-top: 100px;
+	padding: 0.5em;
+}
+
+.profile-cont {
+	display: grid;
+}
+
+.profile-cont .username {
+	justify-self: center;
+	font-size: 1.5em;
+}
+
+.profile-cont .seller-badge {
+	background: rgb(12, 12, 12);
+	box-shadow: 1px 1px 12px 0 rgba(12, 12, 12, 0.25);
+	color: white;
+	justify-self: center;
+	padding: 0.5em 1em;
+	border-radius: 20px;
+	margin-top: 1em;
+}
+
+.info-cont {
+	display: grid;
+	gap: 0.5em;
+}
+
+.info-cont label {
+	color: rgba(12, 12, 12, 0.5);
+	font-weight: bold;
+	margin-top: 0.75em;
+}
+
+.info-cont span {
+	font-size: 1.25em;
+}
+
+.divider {
+	margin: 2em 0;
+	border-top: 1px solid rgba(12, 12, 12, 0.25);
+}
+
+.rental-items-section {
+	display: grid;
+}
+
+.items-cont {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1em;
+}
+
+.item-card {
+	display: grid;
+	gap: 1em;
+	padding: 1em 0;
+}
+
+.user-cont {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.user-pfp {
+	width: 32px;
+}
+
+.user-name {
+	font-size: 1.1em;
+}
+
+.item-preview-cont {
+	width: 100%;
+	height: 160px;
+	background: rgba(24, 24, 24, 0.1);
+}
+
+.item-preview {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: scale-down;
+}
+
+.item-desc {
+	display: grid;
+	gap: 0.2em;
+}
+
+.item-name {
+	font-weight: bold;
+}
+
+.item-loc,
+.item-price {
+	color: rgba(12, 12, 12, 0.75);
+}
+
+.item-price {
+	font-size: 1.2em;
+}
+
+.check-more-cont {
+	margin: 1.5em 0;
+	justify-self: center;
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr auto;
+	gap: 0.25em;
+}
+
+.check-more-cont .fa-angle-right {
+	font-size: 1.3em;
+}
