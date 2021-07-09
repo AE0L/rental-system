@@ -30,8 +30,6 @@
             <li><a href="/pages/homepage">Home</a></li>
             <li><a href="/pages/catalogue">Catalogue</a></li>
             <li><a href="">Categories</a></li>
-            <li><a href="">About us</a></li>
-            <li><a href="">Contact us</a></li>
         </ul>
     </div>
 
