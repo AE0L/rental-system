@@ -119,6 +119,7 @@ const toggle_inputs = (e, req) => {
     let inputs = Array.from(e.getElementsByTagName('input'))
 
     Array.from(e.getElementsByTagName('SELECT')).forEach(select => inputs.push(select))
+    Array.from(e.getElementsByTagName('TEXTAREA')).forEach(select => inputs.push(select))
 
     inputs.forEach(input => {
         if (input.id === 'prop-allow-pet') {
@@ -176,6 +177,25 @@ category.onchange = (e) => {
             show_feat(other_feat)
             toggle_inputs(other_feat, true)
             break;
+    }
+}
+
+// Location
+const loc = el('location')
+const custom_loc_label = el('custom-loc-label')
+const custom_loc_cont = el('custom-loc-cont')
+const custom_loc_add = el('custom-loc-add')
+const custom_loc_city = el('custom-loc-city')
+
+loc.onchange = (e) => {
+    let value = e.target.value
+
+    if (value === 'custom') {
+        show_feat(custom_loc_cont)
+        toggle_inputs(custom_loc_cont, true)
+    } else {
+        hide_feat(custom_loc_cont)
+        toggle_inputs(custom_loc_cont, false)
     }
 }
 

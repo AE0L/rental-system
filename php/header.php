@@ -1,17 +1,7 @@
 <?php
     session_start();
 
-    // MySQL connection
-    $host = 'localhost';
-    $user = 'root';
-    $pass = '';
-    $db = 'rental_system';
-    $db_conn = new mysqli($host, $user, $pass, $db);
-
-    if ($db_conn -> connect_errno) {
-        echo "Failed to connect to MySQL: " . $db_conn -> connect_error;
-        exit();
-    }
+    require_once './php/mysql.php';
 
     /*
      * Table ID-generator

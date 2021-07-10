@@ -33,6 +33,7 @@ label {
 
 textarea {
     font-family: inherit;
+    resize: none;
 }
 
 .form-btn-cont {
@@ -68,7 +69,8 @@ textarea {
     border-radius: 0 5px 5px 0;
 }
 
-.features-cont {
+.features-cont,
+.custom-loc-cont {
     display: grid;
     gap: 1em;
     border: 1px solid rgba(12, 12, 12, 0.2);
@@ -82,7 +84,9 @@ textarea {
 #vehicle-features,
 #m-clothing-features,
 #w-clothing-features,
-#other-features {
+#other-features,
+#custom-loc-label,
+#custom-loc-cont {
     display: none;
 }
 

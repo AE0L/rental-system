@@ -1,5 +1,8 @@
 <?php
     require_once '../php/header.php';
+    require_once '../php/rent-item.php';
+
+    db_connect();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $item_name = clean_input($_POST['item_name']);
@@ -7,6 +10,15 @@
         $item_description = clean_input($_POST['item_description']);
         $category = clean_input($_POST['category']);
         $location = clean_input($_POST['location']);
+        $custom_add = null;
+        $custom_city = null;
+
+        if ($location === 'custom') {
+            $custom_add = clean_input($_POST['custom-loc-add']);
+            $custom_city = clean_input($_POST['custom-loc-city']);
+        }
+
+        create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
 
         if ($category === 'appliances') {
             $app_type = clean_input($_POST['app-type']);
@@ -64,6 +76,8 @@
             }
         }
     }
+
+    db_close();
 ?>
 
 <!DOCTYPE html>
@@ -140,16 +154,29 @@
 
                 <label>Location</label>
                 <select required name="location" id="location">
-                    <option value="" disabled selected>- location -</option>
-                    <?php
-                        $cities = array('Caloocan', 'Las Pinas', 'Makati', 'Mandaluyong', 'Manila', 'Marikina', 'Muntinlupa', 'Navotas', 'Paranaque', 'Pasay', 'Pasig', 'Quezon', 'San Juan', 'Taguig', 'Velenzuela');
-
-                        foreach ($cities as $city) {
-                            echo "<option value=\"{$city} City\">{$city} City</option>";
-                        }
-                    ?>
+                    <option disabled selected value="">- Location -</option>
+                    <option value="user">Your Address</option>
+                    <option value="custom">Custom Address</option>
                 </select>
 
+                <label id="custom-loc-label">Custom Location</label>
+                <div id="custom-loc-cont" class="custom-loc-cont">
+                    <label>Custom Address</label>
+                    <textarea name="custom-loc-add" id="custom-loc-add" cols="30" rows="3"
+                        placeholder="Enter custom address here..."></textarea>
+
+                    <label>City</label>
+                    <select required name="custom-loc-city" id="custom-loc-city">
+                        <option value="" disabled selected>- City -</option>
+                        <?php
+                            $cities = array('Caloocan', 'Las Pinas', 'Makati', 'Mandaluyong', 'Manila', 'Marikina', 'Muntinlupa', 'Navotas', 'Paranaque', 'Pasay', 'Pasig', 'Quezon', 'San Juan', 'Taguig', 'Velenzuela');
+
+                            foreach ($cities as $city) {
+                                echo "<option value=\"{$city} City\">{$city} City</option>";
+                            }
+                        ?>
+                    </select>
+                </div>
                 <div class="form-btn-cont">
                     <input id="clear" class="btn" type="reset" value="Clear">
                     <button class="btn" type="submit" formmethod="post">Post</button>
