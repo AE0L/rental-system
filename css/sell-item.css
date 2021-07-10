@@ -21,6 +21,10 @@ textarea {
     font-size: 1em;
 }
 
+select {
+    width: 100%;
+}
+
 label {
     font-size: 1em;
     font-weight: bold;

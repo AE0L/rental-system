@@ -11,6 +11,9 @@
         <?php option_tag($w_cloth_types) ?>
     </select>
 
+    <label>Brand</label>
+    <input type="text" name="w-cloth-brand" id="w-cloth-brand" placeholder="Enter brand here...">
+
     <label>Size</label>
     <select name="w-cloth-size" id="w-cloth-size">
         <option value="" disabled selected>- Size -</option>

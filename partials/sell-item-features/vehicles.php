@@ -7,13 +7,19 @@
     ?>
 
     <label>Type</label>
-    <select name="type" id="car-type">
+    <select name="car-type" id="car-type">
         <option value="" disabled selected>- Type -</option>
         <?php option_tag($car_types) ?>
     </select>
 
+    <label>Manufacturer</label>
+    <input type="text" name="car-manufacturer" id="car-manufacturer" placeholder="Enter manufacturer here...">
+
+    <label>Model</label>
+    <input type="text" name="car-model," id="car-model," placeholder="Enter model here...">
+
     <label>Year</label>
-    <select name="year" id="car-year">
+    <select name="car-year" id="car-year">
         <option value="" disabled selected>- Year -</option>
         <?php
             for ($x = 2021; $x >= 1970; $x--) {
@@ -23,19 +29,19 @@
     </select>
 
     <label>Transmission</label>
-    <select name="transmission" id="car-transmission">
+    <select name="car-transmission" id="car-transmission">
         <option value="" disabled selected>- Transmission -</option>
         <?php option_tag($car_transmission) ?>
     </select>
 
     <label>Fuel Type</label>
-    <select name="fuel" id="car-fuel">
+    <select name="car-fuel" id="car-fuel">
         <option value="" disabled selected>- Fuel Type -</option>
         <?php option_tag($car_fuels) ?>
     </select>
 
     <label>License Plate Last Number</label>
-    <select name="plate" id="car-plate">
+    <select name="car-plate" id="car-plate">
         <option value="" disabled selected>- Plate Number -</option>
         <?php option_tag($car_plates) ?>
     </select>

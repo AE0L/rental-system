@@ -1,6 +1,6 @@
 <div id="other-features" class="features-cont">
     <label>Type</label>
-    <input type="text" name="item-type" id="item-type" placeholder="Enter item type here...">
+    <input type="text" name="other-type" id="item-type" placeholder="Enter item type here...">
 
     <label>Condition</label>
     <select name="other-condition" id="other-condition">

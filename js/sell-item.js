@@ -78,10 +78,14 @@ prop_type.onchange = (e) => {
         ])
     } else if (type === 'Lot') {
         hide([
+            min_floor,
+            max_floor,
             bed,
             bath,
             park,
             pet,
+            min_floor_label,
+            max_floor_label,
             bed_label,
             bath_label,
             park_label,
