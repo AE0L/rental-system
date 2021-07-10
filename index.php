@@ -47,6 +47,4 @@
 
         return "${header}-ID-${str_rand}";
     }
-
-    echo generate_db_id('RI');
 ?>

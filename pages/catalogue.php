@@ -94,10 +94,7 @@
                     ?>
                 </div>
             </div>
-
-
         </header>
-
 
         <main>
             <section class="search-wrapper-desktop">
@@ -125,17 +122,15 @@
                     <hr class="search-divider">
 
                     <div class="filter-cont">
+                        <h2 class="section-title">Filter</h2>
+
                         <?php
                             function option_tag($array) {
                                 foreach($array as $item) {
                                     echo "<option value=\"{$item}\">{$item}</option>";
                                 }
                             }
-                        ?>
 
-                        <h2 class="section-title">Filter</h2>
-
-                        <?php
                             include '../partials/filters/property.php';
                             include '../partials/filters/vehicle.php';
                             include '../partials/filters/furniture.php';
