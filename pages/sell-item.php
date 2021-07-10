@@ -1,3 +1,10 @@
+<?php
+    function option_tag($array) {
+        foreach($array as $item) {
+            echo "<option value=\"{$item}\">{$item}</option>";
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,63 +34,72 @@
         <main>
             <form class="rental-item-form" action="">
                 <label for="item-name">Rental Item Name</label>
-                <input type="text" name="item-name" id="item-name">
+                <input required type="text" name="item-name" id="item-name" placeholder="Enter item name here...">
 
                 <label for="base-price">Base Price</label>
-                <input type="number" name="base-price" id="base-price">
-
-                <label for="payment-frequency">Frequency of payment</label>
-                <select name="payment-frequency" id="payment-frequency">
-                    <option disabled selected>- frequency -</option>
-                    <option value="day">day</option>
-                    <option value="month">month</option>
-                    <option value="quarter">quarter</option>
-                    <option value="year">year</option>
-                    <option value="custom">custom</option>
-                </select>
+                <div class="base-price-cont">
+                    <span class="base-price-php">&#8369;</span>
+                    <input required type="number" name="base-price" id="base-price" placeholder="Enter price here..">
+                </div>
 
                 <label for="item-description">Item Description</label>
-                <textarea name="item-description" id="item-description" cols="30" rows="10"></textarea>
+                <textarea name="item-description" id="item-description" cols="30" rows="10" required
+                    placeholder="Enter item description here..."></textarea>
 
                 <label for="pictures">Pictures</label>
-                <div id="picture-gallery"></div>
+                <input required type="file" name="preview-pics" id="item-pics" multiple accept="image/*">
 
                 <label for="category">Category</label>
-                <select name="category" id="category">
-                    <option disabled selected>- category -</option>
-                </select>
-
-
-                <label for="sub-category">Sub-Category</label>
-                <select name="sub-category" id="sub-category">
-                    <option disabled selected>- sub-category -</option>
+                <select name="category" id="category" required>
+                    <option value="" disabled selected>- category -</option>
+                    <option value="property">Property/Estate</option>
+                    <option value="vehicle">Vehicle</option>
+                    <option value="furniture">Furniture</option>
+                    <optgroup label="Clothing/Apparel">
+                        <option value="m-cloth">Men's Wear</option>
+                        <option value="w-cloth">Women's Wear</option>
+                    </optgroup>
+                    <option value="appliances">TV & Home Appliances</option>
+                    <option value="other">Others</option>
                 </select>
 
                 <label for="features">Features</label>
-                <div id="features-cont"></div>
+                <div id="temp-features-cont">
+                    Select a category first
+                </div>
+                <?php
+                    include '../partials/sell-item-features/appliances.php';
+                    include '../partials/sell-item-features/furnitures.php';
+                    include '../partials/sell-item-features/properties.php';
+                    include '../partials/sell-item-features/vehicles.php';
+                    include '../partials/sell-item-features/m-clothing.php';
+                    include '../partials/sell-item-features/w-clothing.php';
+                    include '../partials/sell-item-features/others.php';
+                ?>
 
-                <label for="location">Location</label>
-                <select name="location" id="location">
-                    <option selected disabled>- location -</option>
-                    <option value="users">profile address</option>
-                    <option value="custom">custom</option>
+                <label>Location</label>
+                <select required name="prop-location" id="prop-location">
+                    <option value="" disabled selected>- location -</option>
+                    <?php
+                        $cities = Array('Caloocan', 'Las Pinas', 'Makati', 'Mandaluyong', 'Manila', 'Marikina', 'Muntinlupa', 'Navotas', 'Paranaque', 'Pasay', 'Pasig', 'Quezon', 'San Juan', 'Taguig', 'Velenzuela');
+
+                        foreach ($cities as $city) {
+                            echo "<option value=\"{$city} City\">{$city} City</option>";
+                        }
+                    ?>
                 </select>
 
-                <label for="custom-address">Custom Address</label>
-                <textarea name="custom-address" id="custom-address" cols="30" rows="10"></textarea>
-
                 <div class="form-btn-cont">
-                    <input class="btn" type="reset" value="Clear">
+                    <input id="clear" class="btn" type="reset" value="Clear">
                     <input class="btn" type="submit" value="Post">
                 </div>
             </form>
         </main>
 
-        <footer>
-            BSCS Project 2020
-        </footer>
+        <?php include '../partials/footer.php' ?>
 
         <script src="../js/hamburger.js"></script>
+        <script src="../js/sell-item.js"></script>
         <script src="https://kit.fontawesome.com/2b03626812.js" crossorigin="anonymous"></script>
     </body>
 
