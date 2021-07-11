@@ -64,28 +64,28 @@
                 <h2>Categories</h2>
                 <div class="category-cont">
                     <div class="category-item">
-                        <a href="#"><img src="../img/houserent.jpg" height="50px" alt="house"></a>
-                        <p>Property/Estate</p>
+                        <a href="#"><img src="../img/houserent.jpg" height="50px" alt="house">
+                        <p>Property/Estate</p></a>
                     </div>
 
                     <div class="category-item">
-                        <a href="#"><img src="../img/vehicle.jpg" height="50px" alt="vehicle"></a>
-                        <p>Vehicle</p>
+                        <a href="#"><img src="../img/vehicle.jpg" height="50px" alt="vehicle">
+                        <p>Vehicle</p></a>
                     </div>
 
                     <div class="category-item">
-                        <a href="#"><img src="../img/appliances.jpg" height="50px" alt="appliances"></a>
-                        <p>Appliances</p>
+                        <a href="#"><img src="../img/appliances.jpg" height="50px" alt="appliances">
+                        <p>Appliances</p></a>
                     </div>
 
                     <div class="category-item">
-                        <a href="#"><img src="../img/furniture.jpg" height="50px" alt="furniture"></a>
-                        <p>Furnitures</p>
+                        <a href="#"><img src="../img/furniture.jpg" height="50px" alt="furniture">
+                        <p>Furnitures</p></a>
                     </div>
 
                     <div class="category-item">
-                        <a href="#"><img src="../img/clothing.jpg" height="50px" alt="apparel"></a>
-                        <p>Apparel</p>
+                        <a href="#"><img src="../img/clothing.jpg" height="50px" alt="apparel">
+                        <p>Apparel</p></a>
                     </div>
                 </div>
             </section>
