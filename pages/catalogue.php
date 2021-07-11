@@ -4,76 +4,8 @@
     function change_category($category) {
         echo "<script>change_category('{$category}')</script>";
     }
-	
-	// if ($cat_property = 'pages/catalogue?category=property/estate')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-	
-	// else if ($cat_vehicle = 'pages/catalogue?category=vehicle')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-	
-	// else if ($cat_appliances = 'pages/catalogue?category=appliances')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-	
-	// else if ($cat_furniture = 'pages/catalogue?category=furniture')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-	
-	// else if ($cat_clothing = 'pages/catalogue?category=clothing')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-	
-	// else ($cat_other = 'pages/catalogue?category')
-	// {
-	// 	$cat_components = parse_url($cat_property);
-	// 	parse_str($cat_components['query'], $params);
-	// 	echo $params[''];
-	// }
-?>
 
-<!--
-if($category == 'Property/Estate')
-	{
-		$query = "SELECT * FROM category_property";
-	}
-	else if ($category == 'Vehicle')
-	{
-		$query = "SELECT * FROM category_vehicle";
-	}
-	else if ($category == 'Appliances')
-	{
-		$query = "SELECT * FROM category_appliances";
-	}
-	else if ($category == 'Furniture')
-	{
-		$query = "SELECT * FROM category_furniture";
-	}
-	else if ($category == 'Clothing')
-	{
-		$query = "SELECT * FROM category_male_clothing && category_female_clothing";
-	}
-	else 
-	{
-		$query = "SELECT * FROM category_other";
-	}
--->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,6 +19,9 @@ if($category == 'Property/Estate')
         <link rel="stylesheet" href="../css/global.css">
         <link rel="stylesheet" href="../css/hamburger.css">
         <link rel="stylesheet" href="../css/catalogue.css">
+
+        <script src="../js/hamburger.js"></script>
+        <script src="../js/catalogue.js"></script>
     </head>
 
     <body id="body">
@@ -249,6 +184,42 @@ if($category == 'Property/Estate')
                 </div>
 
             </section>
+            <?php
+                $cat = $_GET['category'];
+
+                switch ($cat) {
+                    case 'property':
+                        change_category('property');
+                        $query = "SELECT * FROM category_property";
+                        break;
+                    case 'vehicle':
+                        change_category('vehicle');
+                        $query = "SELECT * FROM category_vehicle";
+                        break;
+                    case 'appliances':
+                        change_category('appliances');
+                        $query = "SELECT * FROM category_appliances";
+                        break;
+                    case 'furniture':
+                        change_category('furniture');
+                        $query = "SELECT * FROM category_furniture";
+                        break;
+                    case 'clothing':
+                        change_category('m-cloth');
+                        $query = "SELECT * FROM category_male_clothing && category_female_clothing";
+                        break;
+
+                    default: $query = "SELECT * FROM category_other";
+                }
+                
+                $result = db_query($query);
+                
+                if ($result->num_rows > 0) {
+                    while ($row = mysqli_fetch_array($sql)) {
+                        print_r($row);
+                    }
+                }
+            ?>
 
             <div class="catalogue-cont">
                 <div class="item-card">
@@ -366,52 +337,10 @@ if($category == 'Property/Estate')
             </div>
         </main>
 
-        <?php
-            include '../partials/footer.php';
-        ?>
+        <?php include '../partials/footer.php' ?>
 
-        <script src="../js/hamburger.js"></script>
-        <script src="../js/catalogue.js"></script>
         <script src="https://kit.fontawesome.com/2b03626812.js" crossorigin="anonymous"></script>
 
-        <?php
-            $cat = $_GET['category'];
-
-            switch ($cat) {
-                case 'property':
-                    change_category('property');
-					$query = "SELECT * FROM category_property";
-                    break;
-                case 'vehicle':
-                    change_category('vehicle');
-					$query = "SELECT * FROM category_vehicle";
-                    break;
-                case 'appliances':
-                    change_category('appliances');
-					$query = "SELECT * FROM category_appliances";
-                    break;
-                case 'furniture':
-                    change_category('furniture');
-					$query = "SELECT * FROM category_furniture";
-                    break;
-                case 'clothing':
-                    change_category('m-cloth');
-					$query = "SELECT * FROM category_male_clothing && category_female_clothing";
-                    break;
-
-                default: $query = "SELECT * FROM category_other";
-            }
-			
-			$sql = mysqli_query($conn, $query);
-			
-			if (mysql_num_rows($sql)>0)
-			{
-				while ($row = mysqli_fetch_array($sql))
-				{
-					print_r($row);
-				}
-			}
-        ?>
     </body>
 
 </html>
