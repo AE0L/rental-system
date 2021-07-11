@@ -380,22 +380,37 @@ if($category == 'Property/Estate')
             switch ($cat) {
                 case 'property':
                     change_category('property');
+					$query = "SELECT * FROM category_property";
                     break;
                 case 'vehicle':
                     change_category('vehicle');
+					$query = "SELECT * FROM category_vehicle";
                     break;
                 case 'appliances':
                     change_category('appliances');
+					$query = "SELECT * FROM category_appliances";
                     break;
                 case 'furniture':
                     change_category('furniture');
+					$query = "SELECT * FROM category_furniture";
                     break;
                 case 'clothing':
                     change_category('m-cloth');
+					$query = "SELECT * FROM category_male_clothing && category_female_clothing";
                     break;
 
-                default:
+                default: $query = "SELECT * FROM category_other";
             }
+			
+			$sql = mysqli_query($conn, $query);
+			
+			if (mysql_num_rows($sql)>0)
+			{
+				while ($row = mysqli_fetch_array($sql))
+				{
+					print_r($row);
+				}
+			}
         ?>
     </body>
 
