@@ -8,21 +8,21 @@
         if ($location === 'custom') {
             $address_id = create_address($custom_add, $custom_city);
         } else {
-            $address_id = get_user_address($_SESSION['user-id']);
+            $address_id = get_user_address($_SESSION['user_id']);
         }
 
         if (!$address_id) {
-            return false;
+            die('invalid address id');
         }
 
-        $sql = "INSERT INTO rent_item 
-        (rent_item_id, item_name, category, address_id, item_description, price) 
-        VALUES ({$rent_item_id}, {$name}, {$price}, {$category}, {$address_id}, {$desc}, {$price});";
+        $sql = "INSERT INTO rent_item (rent_item_id, item_name, category, address_id, item_description, price) VALUES ('{$rent_item_id}', '{$name}', '{$category}', '{$address_id}', '{$desc}', {$price});";
 
         $result = db_query($sql);
 
+        global $db_conn;
+
         if (!$result) {
-            return false;
+            die($sql.'\n'.$db_conn->error);
         }
 
         return $rent_item_id;
@@ -38,7 +38,7 @@
 
             return $row['address_id'];
         } else {
-            error_log("[DB_ERROR]: user_id not found");
+            die("[DB_ERROR]: user_id not found");
             return false;
         }
     }
@@ -50,12 +50,12 @@
         $country = 'PH';
 
         $sql = "INSERT INTO address (address_id, addressline_1, city, province, country) 
-        VALUES ({$address_id}, {$addressline_1}, {$city}, {$province}, {$country})";
+        VALUES ('{$address_id}', '{$addressline_1}', '{$city}', '{$province}', '{$country}')";
 
         if (db_query($sql) === TRUE) {
             return $address_id;
         } else {
-            error_log("[DB_ERROR]: error inserting on address table");
+            die("[DB_ERROR]: error inserting on address table");
             return false;
         }
     }

@@ -2,7 +2,7 @@
     // INSERT TO category_appliance TABLE
     function create_appliances(Appliance $a) {
         $sql = "INSERT INTO category_appliance (appliance_id, rent_item_id, appliance_type, appliance_condition)
-        VALUES ({$a->id}, {$a->rent_item_id}, {$a->type}, {$a->condition})";
+        VALUES ('{$a->id}', '{$a->rent_item_id}', '{$a->type}', '{$a->condition}')";
 
         return db_query($sql);
     }
@@ -10,7 +10,7 @@
     // INSERT TO category_other TABLE
     function create_others(Other $o) {
         $sql = "INSERT INTO category_other (other_id, rent_item_id, item_type, item_condition)
-        VALUES ({$o->id}, {$o->rent_item_id}, {$o->type}, {$o->condition});";
+        VALUES ('{$o->id}', '{$o->rent_item_id}', '{$o->type}', '{$o->condition}');";
 
         return db_query($sql);
     }
@@ -18,7 +18,7 @@
     // INSERT to category_furniture TABLE
     function create_furniture(Furniture $f) {
         $sql = "INSERT INTO category_furniture (furniture_id, rent_item_id, furniture_type, furniture_condition)
-        VALUES ({$f->id}, {$f->rent_item_id}, {$f->type}, {$f->condition});";
+        VALUES ('{$f->id}', '{$f->rent_item_id}', '{$f->type}', '{$f->condition}');";
 
         return db_query($sql);
     }
@@ -37,7 +37,7 @@
         
         $sql = "INSERT INTO {$table} 
         ({$id_col}, rent_item_id, cloth_type, cloth_size, cloth_brand, cloth_condition)
-        VALUES ({$c->id}, {$c->rent_item_id}, {$c->type}, {$c->size}, {$c->brand}, {$c->condition})";
+        VALUES ('{$c->id}', '{$c->rent_item_id}', '{$c->type}', '{$c->size}', '{$c->brand}', '{$c->condition}')";
 
         return db_query($sql);
     }
@@ -46,7 +46,7 @@
     function create_vehicle(Vehicle $v) {
         $sql = " INSERT INTO category_vehicle
         (vehicle_id, rent_item_id, vehicle_type, manufacturer, manufactured_year, model, transmission, fuel, license_plate_last_no)
-        VALUE ({$v->vehicle_id}, {$v->rent_item_id}, {$v->type}, {$v->manufacturer}, {$v->year}, {$v->model}, {$v->transmission}, {$v->fuel}, {$v->plate});
+        VALUE ('{$v->id}', '{$v->rent_item_id}', '{$v->type}', '{$v->manufacturer}', '{$v->year}', '{$v->model}', '{$v->transmission}', '{$v->fuel}', '{$v->plate}');
         ";
 
         return db_query($sql);
@@ -56,8 +56,7 @@
     function create_property(Property $p) {
         $sql = " INSERT INTO category_property 
         (property_id, rent_item_id, prop_type, min_floor, max_floor, min_lot, max_lot, bedroom, bathroom, parking, pets)
-        VALUE ({$p->id}, {$p->rent_item_id}, {$p->type}, {$p->min_floor}, {$p->max_floor}, {$p->min_lot}, {$p->max_lot}, {$p->bedroom}, {$p->bathroom}, {$p->parking}, {$p->pets});
-        ";
+        VALUE ('{$p->id}', '{$p->rent_item_id}', '{$p->type}', '{$p->min_floor}', '{$p->max_floor}', '{$p->min_lot}', '{$p->max_lot}', '{$p->bedroom}', '{$p->bathroom}', '{$p->parking}', '{$p->pets}');";
 
         return db_query($sql);
     }

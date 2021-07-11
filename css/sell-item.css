@@ -78,6 +78,7 @@ textarea {
     border-radius: 5px;
 }
 
+
 #app-features,
 #furniture-features,
 #property-features,
@@ -127,9 +128,7 @@ textarea {
     }
 
     label[for="item-description"],
-    label[for="pictures"],
-    label[for="features"],
-    label[for="custom-address"] {
+    label[for="custom-loc"] {
         align-self: initial;
     }
 
@@ -144,5 +143,10 @@ textarea {
 
     .features-cont {
         grid-template-columns: auto 1fr;
+    }
+
+    .custom-loc-cont {
+        grid-template-columns: auto 1fr;
+        width: 100%;
     }
 }

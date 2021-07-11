@@ -191,9 +191,11 @@ loc.onchange = (e) => {
     let value = e.target.value
 
     if (value === 'custom') {
+        show_feat(custom_loc_label)
         show_feat(custom_loc_cont)
         toggle_inputs(custom_loc_cont, true)
     } else {
+        hide_feat(custom_loc_label)
         hide_feat(custom_loc_cont)
         toggle_inputs(custom_loc_cont, false)
     }

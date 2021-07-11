@@ -16,7 +16,7 @@
     <input type="text" name="car-manufacturer" id="car-manufacturer" placeholder="Enter manufacturer here...">
 
     <label>Model</label>
-    <input type="text" name="car-model," id="car-model," placeholder="Enter model here...">
+    <input type="text" name="car-model" id="car-model," placeholder="Enter model here...">
 
     <label>Year</label>
     <select name="car-year" id="car-year">

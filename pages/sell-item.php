@@ -2,6 +2,12 @@
     require_once '../php/header.php';
     require_once '../php/rent-item.php';
     require_once '../php/category.php';
+    require_once '../php/catalogue.php';
+    require_once '../php/preview-pic.php';
+
+    // TESTING
+    // $_SESSION['user_id'] = 'U-ID-12345';
+    // =======
 
     db_connect();
 
@@ -26,6 +32,7 @@
         $rent_item_id = create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
 
         if(!$rent_item_id) {
+            die('invalid rent item id');
             return false;
         }
 
@@ -105,6 +112,9 @@
             $property = new Property($rent_item_id, $prop_type, $min_floor, $max_floor, $min_lot, $max_lot, $bedroom, $bathroom, $parking, $pet);
             create_property($property);
         }
+
+        add_rent_item_to_catalogue($_SESSION['user_id'], $rent_item_id, date("Y-m-d H:i:s"));
+        upload_preview_pics($rent_item_id);
     }
 
     db_close();
@@ -136,7 +146,7 @@
         </header>
 
         <main>
-            <form class="rental-item-form" method="post">
+            <form class="rental-item-form" method="post" enctype="multipart/form-data">
                 <label for="item-name">Rental Item Name</label>
                 <input required type="text" name="item_name" id="item-name" placeholder="Enter item name here...">
 
@@ -151,8 +161,7 @@
                     placeholder="Enter item description here..."></textarea>
 
                 <label for="pictures">Pictures</label>
-                <input required type="file" name="preview_pics[]" id="item-pics" multiple accept="image/*"
-                    enctype="multipart/form-data">
+                <input required type="file" name="preview_pics[]" id="item-pics" multiple accept="image/*">
 
                 <label for="category">Category</label>
                 <select name="category" id="category" required>
@@ -189,7 +198,7 @@
                     <option value="custom">Custom Address</option>
                 </select>
 
-                <label id="custom-loc-label">Custom Location</label>
+                <label for="custom-loc" id="custom-loc-label">Custom Location</label>
                 <div id="custom-loc-cont" class="custom-loc-cont">
                     <label>Custom Address</label>
                     <textarea name="custom-loc-add" id="custom-loc-add" cols="30" rows="3"
