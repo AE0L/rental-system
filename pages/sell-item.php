@@ -1,10 +1,15 @@
 <?php
     require_once '../php/header.php';
     require_once '../php/rent-item.php';
+    require_once '../php/category.php';
 
     db_connect();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        upload_rent_item();
+    }
+
+    function upload_rent_item() {
         $item_name = clean_input($_POST['item_name']);
         $base_price = clean_input($_POST['base_price']);
         $item_description = clean_input($_POST['item_description']);
@@ -18,27 +23,46 @@
             $custom_city = clean_input($_POST['custom-loc-city']);
         }
 
-        create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
+        $rent_item_id = create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
+
+        if(!$rent_item_id) {
+            return false;
+        }
 
         if ($category === 'appliances') {
             $app_type = clean_input($_POST['app-type']);
             $app_cond = clean_input($_POST['app-condition']);
+
+            $appliance = new Appliance($rent_item_id, $app_type, $app_cond);
+            create_appliances($appliance);
         } else if ($category === 'other') {
             $other_type = clean_input($_POST['other-type']);
             $other_cond = clean_input($_POST['other-condition']);
+
+            $other = new Other($rent_item_id, $other_type, $other_cond);
+            create_others($other);
         } else if ($category === 'furniture') {
             $furn_type = clean_input($_POST['furn-type']);
             $furn_cond = clean_input($_POST['furn-condition']);
+
+            $furniture = new Furniture($rent_item_id, $furn_type, $furn_cond);
+            create_furniture($furniture);
         } else if ($category === 'm-cloth') {
             $m_cloth_type = clean_input($_POST['m-cloth-type']);
             $m_cloth_brand = clean_input($_POST['m-cloth-brand']);
             $m_cloth_size = clean_input($_POST['m-cloth-size']);
             $m_cloth_cond = clean_input($_POST['m-cloth-condition']);
+
+            $clothing = new Clothing($rent_item_id, 'M', $m_cloth_type, $m_cloth_size, $m_cloth_brand, $m_cloth_cond);
+            create_clothing($clothing);
         } else if ($category === 'w-cloth') {
             $w_cloth_type = clean_input($_POST['w-cloth-type']);
             $w_cloth_brand = clean_input($_POST['w-cloth-brand']);
             $w_cloth_size = clean_input($_POST['w-cloth-size']);
             $w_cloth_cond = clean_input($_POST['w-cloth-condition']);
+
+            $clothing = new Clothing($rent_item_id, 'W', $w_cloth_type, $w_cloth_size, $w_cloth_brand, $w_cloth_cond);
+            create_clothing($clothing);
         } else if ($category === 'vehicle') {
             $car_type = clean_input($_POST['car-type']);
             $car_year = clean_input($_POST['car-year']);
@@ -47,6 +71,9 @@
             $car_transmission = clean_input($_POST['car-transmission']);
             $car_fuel = clean_input($_POST['car-fuel']);
             $car_plate = clean_input($_POST['car-plate']);
+
+            $vehicle = new Vehicle($rent_item_id, $car_type, $car_manufacturer, $car_year, $car_model, $car_transmission, $car_fuel, $car_plate);
+            create_vehicle($vehicle);
         } else if ($category === 'property') {
             $prop_type = clean_input($_POST['prop-type']);
             $min_floor = null;
@@ -74,6 +101,9 @@
             if (!in_array($prop_type, array('Lot', 'Commercial'))) {
                 $pet = clean_input($_POST['allow-pet']);
             }
+
+            $property = new Property($rent_item_id, $prop_type, $min_floor, $max_floor, $min_lot, $max_lot, $bedroom, $bathroom, $parking, $pet);
+            create_property($property);
         }
     }
 

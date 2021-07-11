@@ -1,6 +1,5 @@
 <?php
     require_once 'header.php';
-    require_once './mysql.php';
 
     function create_rent_item($name, $price, $desc, $category, $location, $custom_add, $custom_city) {
         $rent_item_id = generate_db_id("RI");
@@ -26,7 +25,7 @@
             return false;
         }
 
-        return true;
+        return $rent_item_id;
     }
 
     function get_user_address($user_id) {
