@@ -1,47 +1,51 @@
 <?php
-	include "connection.php";
+    require_once '../php/header.php';
+
+    function change_category($category) {
+        echo "<script>change_category('{$category}')</script>";
+    }
 	
-	if ($cat_property = 'pages/catalogue?category=property/estate')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// if ($cat_property = 'pages/catalogue?category=property/estate')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 	
-	else if ($cat_vehicle = 'pages/catalogue?category=vehicle')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// else if ($cat_vehicle = 'pages/catalogue?category=vehicle')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 	
-	else if ($cat_appliances = 'pages/catalogue?category=appliances')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// else if ($cat_appliances = 'pages/catalogue?category=appliances')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 	
-	else if ($cat_furniture = 'pages/catalogue?category=furniture')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// else if ($cat_furniture = 'pages/catalogue?category=furniture')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 	
-	else if ($cat_clothing = 'pages/catalogue?category=clothing')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// else if ($cat_clothing = 'pages/catalogue?category=clothing')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 	
-	else ($cat_other = 'pages/catalogue?category')
-	{
-		$cat_components = parse_url($cat_property);
-		parse_str($cat_components['query'], $params);
-		echo $params[''];
-	}
+	// else ($cat_other = 'pages/catalogue?category')
+	// {
+	// 	$cat_components = parse_url($cat_property);
+	// 	parse_str($cat_components['query'], $params);
+	// 	echo $params[''];
+	// }
 ?>
 
 <!--
@@ -204,12 +208,6 @@ if($category == 'Property/Estate')
                         <h2 class="section-title">Filter</h2>
 
                         <?php
-                            function option_tag($array) {
-                                foreach($array as $item) {
-                                    echo "<option value=\"{$item}\">{$item}</option>";
-                                }
-                            }
-
                             $is_mobile = false;
 
                             include '../partials/filters/property.php';
@@ -375,6 +373,30 @@ if($category == 'Property/Estate')
         <script src="../js/hamburger.js"></script>
         <script src="../js/catalogue.js"></script>
         <script src="https://kit.fontawesome.com/2b03626812.js" crossorigin="anonymous"></script>
+
+        <?php
+            $cat = $_GET['category'];
+
+            switch ($cat) {
+                case 'property':
+                    change_category('property');
+                    break;
+                case 'vehicle':
+                    change_category('vehicle');
+                    break;
+                case 'appliances':
+                    change_category('appliances');
+                    break;
+                case 'furniture':
+                    change_category('furniture');
+                    break;
+                case 'clothing':
+                    change_category('m-cloth');
+                    break;
+
+                default:
+            }
+        ?>
     </body>
 
 </html>

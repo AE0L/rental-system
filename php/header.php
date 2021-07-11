@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once './php/mysql.php';
+    require_once 'mysql.php';
 
     /*
      * Table ID-generator
@@ -47,4 +47,5 @@
         echo $js_code;
     }
 
-    include 'forms.php';
+    require_once 'forms.php';
+?>

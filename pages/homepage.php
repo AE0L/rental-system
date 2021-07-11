@@ -64,28 +64,38 @@
                 <h2>Categories</h2>
                 <div class="category-cont">
                     <div class="category-item">
-                        <a href="/pages/catalogue?category=property/estate"><img src="../img/houserent.jpg" height="50px" alt="house">
-                        <p>Property/Estate</p></a>
+                        <a href="/pages/catalogue?category=property"><img src="../img/houserent.jpg" height="50px"
+                                alt="house">
+                            <p>Property/Estate</p>
+                        </a>
                     </div>
 
                     <div class="category-item">
-                        <a href="/pages/catalogue?category=vehicle"><img src="../img/vehicle.jpg" height="50px" alt="vehicle">
-                        <p>Vehicle</p></a>
+                        <a href="/pages/catalogue?category=vehicle"><img src="../img/vehicle.jpg" height="50px"
+                                alt="vehicle">
+                            <p>Vehicle</p>
+                        </a>
                     </div>
 
                     <div class="category-item">
-                        <a href="/pages/catalogue?category=appliances"><img src="../img/appliances.jpg" height="50px" alt="appliances">
-                        <p>Appliances</p></a>
+                        <a href="/pages/catalogue?category=appliances"><img src="../img/appliances.jpg" height="50px"
+                                alt="appliances">
+                            <p>Appliances</p>
+                        </a>
                     </div>
 
                     <div class="category-item">
-                        <a href="/pages/catalogue?category=furniture"><img src="../img/furniture.jpg" height="50px" alt="furniture">
-                        <p>Furnitures</p></a>
+                        <a href="/pages/catalogue?category=furniture"><img src="../img/furniture.jpg" height="50px"
+                                alt="furniture">
+                            <p>Furnitures</p>
+                        </a>
                     </div>
 
                     <div class="category-item">
-                        <a href="/pages/catalogue?category=clothing"><img src="../img/clothing.jpg" height="50px" alt="apparel">
-                        <p>Apparel</p></a>
+                        <a href="/pages/catalogue?category=clothing"><img src="../img/clothing.jpg" height="50px"
+                                alt="apparel">
+                            <p>Apparel</p>
+                        </a>
                     </div>
                 </div>
             </section>
