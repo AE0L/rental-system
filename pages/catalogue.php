@@ -1,3 +1,76 @@
+<?php
+	include "connection.php";
+	
+	if ($cat_property = 'pages/catalogue?category=property/estate')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+	
+	else if ($cat_vehicle = 'pages/catalogue?category=vehicle')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+	
+	else if ($cat_appliances = 'pages/catalogue?category=appliances')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+	
+	else if ($cat_furniture = 'pages/catalogue?category=furniture')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+	
+	else if ($cat_clothing = 'pages/catalogue?category=clothing')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+	
+	else ($cat_other = 'pages/catalogue?category')
+	{
+		$cat_components = parse_url($cat_property);
+		parse_str($cat_components['query'], $params);
+		echo $params[''];
+	}
+?>
+
+<!--
+if($category == 'Property/Estate')
+	{
+		$query = "SELECT * FROM category_property";
+	}
+	else if ($category == 'Vehicle')
+	{
+		$query = "SELECT * FROM category_vehicle";
+	}
+	else if ($category == 'Appliances')
+	{
+		$query = "SELECT * FROM category_appliances";
+	}
+	else if ($category == 'Furniture')
+	{
+		$query = "SELECT * FROM category_furniture";
+	}
+	else if ($category == 'Clothing')
+	{
+		$query = "SELECT * FROM category_male_clothing && category_female_clothing";
+	}
+	else 
+	{
+		$query = "SELECT * FROM category_other";
+	}
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
