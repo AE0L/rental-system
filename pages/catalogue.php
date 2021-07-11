@@ -213,15 +213,17 @@
                 }
                 
                 $result = db_query($query);
-                
-                if ($result->num_rows > 0) {
-                    while ($row = mysqli_fetch_array($sql)) {
-                        print_r($row);
-                    }
-                }
             ?>
 
             <div class="catalogue-cont">
+                <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = mysqli_fetch_array($sql)) {
+                            print_r($row);
+                        }
+                    }
+                ?>
+
                 <div class="item-card">
                     <div class="item-card-header">
                         <div class="user-cont">
