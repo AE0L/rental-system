@@ -1,4 +1,4 @@
-<div class="vehicle-filter">
+<div id="<?php echo $is_mobile ? "mobile-vehicle-filter" : "vehicle-filter" ?>">
     <?php
         $car_types = Array('Sedan', 'Truck', 'SUV','MPV', 'VAN');
         $car_transmission = Array('Automatic', 'Manual');
@@ -6,7 +6,7 @@
         $car_plates = Array('1/2 Monday', '3/4 Tuesday', '5/6 Wednesday', '7/8 Thursday', '9/0 Friday');
     ?>
 
-    <form action="" id="vehicle-filter-form">
+    <form action="" id="<?php echo $is_mobile ? "mobile-vehicle-filter-form" : "vehicle-filter-form" ?>">
         <label>Type</label>
         <select name="type" id="car-type">
             <option value="any" selected>Any</option>

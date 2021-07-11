@@ -1,11 +1,11 @@
-<div class="m-cloth-filter">
+<div id="<?php echo $is_mobile ? "mobile-m-cloth-filter" : "m-cloth-filter" ?>">
     <?php
         $w_cloth_types = Array('Activewear', 'Tops & Sets', 'Bottoms', 'Footwear', 'Coats, Jackets, & Outerwear', 'Bags & Wallets', 'Watches & Accessories', 'Others');
         $w_cloth_sizes = Array('XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL');
         $w_cloth_condition = Array('New', 'Used');
     ?>
 
-    <form action="" id="m-cloth-filter-form">
+    <form action="" id="<?php echo $is_mobile ? "mobile-m-cloth-filter-form" : "m-cloth-filter-form" ?>">
         <label>Type</label>
         <select name="m-cloth-type" id="m-cloth-type">
             <option value="Any" selected>Any</option>
