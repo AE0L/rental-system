@@ -1,11 +1,11 @@
-<div class="prop-filter">
+<div id="<?php echo $is_mobile ? "mobile-prop-filter" : "prop-filter" ?>">
     <?php
         $prop_type = Array('Apartment & Condo', 'House & Lot', 'Townhouse', 'Lot', 'Commercial');
         $prop_room = Array('1','2','3','4','5','5+');
         $prop_park = Array('0','1','2','2+');
     ?>
 
-    <form id="prop-filter-form" action="">
+    <form action="" id="<?php echo $is_mobile ? "mobile-prop-filter-form" : "prop-filter-form" ?>">
         <label>Property Type</label>
         <select id="prop-type">
             <option value="any">Any</option>

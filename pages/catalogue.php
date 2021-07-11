@@ -109,7 +109,13 @@ if($category == 'Property/Estate')
 
                 <div class="mobile-filter-content">
                     <?php
+                        $is_mobile = true;
                         include '../partials/filters/property.php';
+                        include '../partials/filters/vehicle.php';
+                        include '../partials/filters/furniture.php';
+                        include '../partials/filters/m-clothing.php';
+                        include '../partials/filters/w-clothing.php';
+                        include '../partials/filters/appliances.php';
                     ?>
 
                     <hr class="search-divider">
@@ -157,7 +163,7 @@ if($category == 'Property/Estate')
                     <span class="title">Categories</span>
                 </div>
 
-                <div class="mobile-category-content">
+                <div id="mobile-category-cont" class="mobile-category-content">
                     <?php
                         $categories = Array("Any", "Property/Estate", "Vehicle", 'Furniture', 'TV & Home Appliances', "Women's Wear", "Men's Wear", "Others");
 
@@ -203,6 +209,8 @@ if($category == 'Property/Estate')
                                     echo "<option value=\"{$item}\">{$item}</option>";
                                 }
                             }
+
+                            $is_mobile = false;
 
                             include '../partials/filters/property.php';
                             include '../partials/filters/vehicle.php';

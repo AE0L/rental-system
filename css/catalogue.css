@@ -151,12 +151,12 @@ img.item-preview {
     border-top: 1px solid rgba(12, 12, 12, 0.1);
 }
 
-.prop-filter,
-.vehicle-filter,
-.furniture-filter,
-.w-cloth-filter,
-.m-cloth-filter,
-.app-filter {
+#prop-filter,
+#vehicle-filter,
+#furniture-filter,
+#w-cloth-filter,
+#m-cloth-filter,
+#app-filter {
     display: none;
 }
 
@@ -168,10 +168,6 @@ img.item-preview {
 .price-cont,
 .sort-cont,
 .search-category-cont {
-    display: grid;
-}
-
-.prop-filter {
     display: grid;
 }
 
@@ -340,6 +336,25 @@ img.item-preview {
     .catalogue-cont {
         border-bottom: 0;
     }
+}
+
+#mobile-prop-filter,
+#mobile-vehicle-filter,
+#mobile-furniture-filter,
+#mobile-m-cloth-filter,
+#mobile-w-cloth-filter,
+#mobile-app-filter {
+    display: none;
+}
+
+#mobile-prop-filter-form,
+#mobile-vehicle-filter-form,
+#mobile-furniture-filter-form,
+#mobile-m-cloth-filter-form,
+#mobile-w-cloth-filter-form,
+#mobile-app-filter-form {
+    display: grid;
+    gap: 1em;
 }
 
 
