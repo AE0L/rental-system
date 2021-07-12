@@ -1,3 +1,7 @@
+<?
+    require_once '../php/header.php';
+    require_once '../php/item-view.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +19,7 @@
 
     <body>
         <?php
+            $title = 'Item View';
             include '../partials/navbar.php';
         ?>
 
