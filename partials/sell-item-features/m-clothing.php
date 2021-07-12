@@ -12,7 +12,7 @@
     </select>
 
     <label>Brand</label>
-    <input type="text" name="w-cloth-brand" id="w-cloth-brand" placeholder="Enter brand here...">
+    <input type="text" name="m-cloth-brand" id="m-cloth-brand" placeholder="Enter brand here...">
 
     <label>Size</label>
     <select name="m-cloth-size" id="m-cloth-size">
