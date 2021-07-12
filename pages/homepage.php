@@ -32,15 +32,15 @@
         <main>
             <div class="carousel">
                 <div class="slides">
-                    <img src="../img/house.jpg" alt="">
+                    <img src="../img/welcome.gif" alt="">
                 </div>
 
                 <div class="slides">
-                    <img src="../img/vehicle.jpg" alt="">
+                    <img src="../img/sale.png" alt="">
                 </div>
 
                 <div class="slides">
-                    <img src="../img/car.jpg" alt="">
+                    <img src="../img/holiday.png" alt="">
                 </div>
 
                 <div class="carousel-dots">

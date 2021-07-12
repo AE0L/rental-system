@@ -218,7 +218,7 @@
             <div class="catalogue-cont">
                 <?php
                     if ($result->num_rows > 0) {
-                        while ($row = mysqli_fetch_array($sql)) {
+                        while ($row = mysqli_fetch_array($result)) {
                             print_r($row);
                         }
                     }

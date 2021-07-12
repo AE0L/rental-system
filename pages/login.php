@@ -20,7 +20,7 @@
 
         <header>
             <div class="image-cont">
-                <img src="../img/car.jpg" alt="img">
+				<img src="../img/Logo.gif" style ="width: 75%" alt="img">
             </div>
         </header>
 
