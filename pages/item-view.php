@@ -144,9 +144,145 @@
                 <?php
                     } else if ($category === 'appliances') {
                         $appliance = Appliance::retrieve_by_rent_item($rent_item->id);
-                        ?>
+                ?>
+
+                <div class="feature-group">
+                    <label>Type</label>
+                    <span><?php echo $appliance->type ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Condition</label>
+                    <span><?php echo $appliance->condition ?></span>
+                </div>
 
                 <?php
+                    } else if ($category === 'furniture') {
+                        $furniture = Furniture::retrieve_by_rent_item($rent_item->id);
+                ?>
+
+                <div class="feature-group">
+                    <label>Type</label>
+                    <span><?php echo $furniture->type ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Condition</label>
+                    <span><?php echo $furniture->condition ?></span>
+                </div>
+
+                <?php
+                    } else if ($category === 'Other') {
+                        $other = Other::retrieve_by_rent_item($rent_item->id);
+                ?>
+
+                <div class="feature-group">
+                    <label>Type</label>
+                    <span><?php echo $other->type ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Condition</label>
+                    <span><?php echo $other->condition ?></span>
+                </div>
+
+                <?php
+                    } else if ($category === 'm-cloth' || $category === 'w_cloth') {
+                        $cloth = Clothing::retrieve_by_rent_item($rent_item->id, $category === 'm-cloth' ? 'M' : 'W');
+                ?>
+
+                <div class="feature-group">
+                    <label>Gender</label>
+                    <span><?php echo $category === 'M' ? 'Men\'s' : 'Women\'s' ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Type</label>
+                    <span><?php echo $cloth->type ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Size</label>
+                    <span><?php echo $cloth->size ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Brand</label>
+                    <span><?php echo $cloth->brand ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Condition</label>
+                    <span><?php echo $cloth->condition ?></span>
+                </div>
+
+                <?php
+                    } else if ($category == 'property') {
+                        $property = Property::retrieve_by_rent_item($rent_item->id);
+
+                        if (in_array($prop_type, array('Apartment & Condo', 'House & Lot', 'Townhouse', 'Commercial'))) {
+                ?>
+
+                <div class="feature-group">
+                    <label>Min Floor Area</label>
+                    <span><?php echo $property->min_floor ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Max Floor Area</label>
+                    <span><?php echo $property->max_floor ?></span>
+                </div>
+
+                <?php
+                        }
+
+                        if ($prop_type !== 'Apartment & Condo') {
+                ?>
+
+                <div class="feature-group">
+                    <label>Min Lot Area</label>
+                    <span><?php echo $property->min_lot ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Max Lot Area</label>
+                    <span><?php echo $property->max_lot ?></span>
+                </div>
+
+                <?php
+                        }
+
+                        if (in_array($prop_type, array('Apartment & Condo', 'House & Lot', 'Townhouse', 'Commercial'))) {
+                ?>
+
+                <div class="feature-group">
+                    <label>Bedrooms</label>
+                    <span><?php echo $property->bedroom ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Bathrooms</label>
+                    <span><?php echo $property->bathrooms ?></span>
+                </div>
+
+                <div class="feature-group">
+                    <label>Parking</label>
+                    <span><?php echo $property->parking ?></span>
+                </div>
+
+                <?php
+                        }
+
+                        if (!in_array($prop_type, array('Lot', 'Commercial'))) {
+                ?>
+
+                <div class="feature-group">
+                    <label>Pets Allowed?</label>
+                    <span><?php echo $property->pets ? 'Yes' : 'No' ?></span>
+                </div>
+
+                <?php
+                        }
                     }
                 ?>
             </div>
