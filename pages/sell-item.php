@@ -6,7 +6,7 @@
     require_once '../php/preview-pic.php';
 
     // TESTING
-    $_SESSION['user_id'] = 'U-ID-12345';
+    $_SESSION['user_id'] = 'U-ID-12123';
     // =======
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -34,6 +34,10 @@
         }
 
         $rent_item = create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
+
+        if (!$rent_item) {
+            die('problem line:39');
+        }
 
         $rent_item->store();
 
