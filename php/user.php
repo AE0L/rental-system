@@ -46,10 +46,36 @@ class User {
         return false;
     }
 
+    static function is_exist($username, $email) {
+        $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
+        $result = db_query($user_check_query);
+
+        if ($result->num_rows == 0) {
+            return false;
+        }
+
+        $user = $result->fetch_assoc();
+
+        $errors = array();
+
+        if ($user) {
+            if ($user['username'] === $username) {
+                array_push($errors, "Username already exists");
+            }
+
+            if ($user['email'] === $email) {
+                array_push($errors, "email already exists");
+            }
+        }
+
+        return $errors;
+    }
+
+
     function store() {
         $sql = "INSERT INTO users
-        (user_id, first_name, last_name, username, passwordhash, gender, email, address_id, contact_id)
-        VALUES ('{$this->id}', '{$this->first_name}', '{$this->last_name}', '{$this->username}', '{$this->password}', '{$this->gender}', '{$this->email}', '{$this->address->id}', '{$this->contact->id}');";
+        (user_id, firstname, lastname, username, passwordhash, gender, email, address_id, contact_id)
+        VALUES ('{$this->id}', '{$this->firstname}', '{$this->lastname}', '{$this->username}', '{$this->password}', '{$this->gender}', '{$this->email}', '{$this->address->id}', '{$this->contact->id}');";
 
         return db_query($sql);
     }

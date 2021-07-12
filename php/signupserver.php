@@ -1,77 +1,60 @@
 <?php
-session_start();
 
-// initializing variables
-$username = "";
-$email    = "";
-$firstname = "";
-$lastname = "";
-$mobile = "";
-$address_1 = "";
-$address_2 = "";
+require_once 'address.php';
+require_once 'contact.php';
+require_once 'user.php';
+
+$username = $email = $firstname = $lastname = $gender = "";
+$mobile = $address_1 = $address_2 = $city = "";
 $errors = array(); 
 
-// connect to the database
-$db = mysqli_connect('localhost', 'root', '', 'rental_system');
-if (mysqli_connect_errno()) {
-    // If there is an error with the connection, stop the script and display the error.
-    exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $firstname = clean_input($_POST['firstname']);
+    $lastname = clean_input($_POST['lastname']);
+    $username = clean_input($_POST['username']);
+    $gender = clean_input($_POST['gender']);
+    $email = clean_input($_POST['email']);
+    $password_1 = clean_input($_POST['password_1']);
+    $password_2 = clean_input($_POST['password_2']);
+    $mobile = clean_input($_POST['mobile']);
+    $address_1 = clean_input($_POST['address_1']);
+    $address_2 = clean_input($_POST['address_2']);
+    $city = clean_input($_POST['city']);
 
-// REGISTER USER
-if (isset($_POST['reg_user'])) {
-  // receive all input values from the form
-    $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-    $lastname = mysqli_real_escape_string($db, $_POST['lastname']);
-    $username = mysqli_real_escape_string($db, $_POST['username']);
-    $email = mysqli_real_escape_string($db, $_POST['email']);
-    $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-    $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
-    $mobile = mysqli_real_escape_string($db, $_POST['mobile']);
-    $address_1 = mysqli_real_escape_string($db, $_POST['address_1']);
-    $address_2 = mysqli_real_escape_string($db, $_POST['address_2']);
+    if ($password_1 != $password_2) {
+      array_push($errors, "The two passwords do not match");
+    }
 
+    $is_exists = User::is_exist($username, $email);
 
-  // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($username)) { array_push($errors, "Username is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
-  if (empty($password_1)) { array_push($errors, "Password is required"); }
-  if ($password_1 != $password_2) {
-	array_push($errors, "The two passwords do not match");
-  }
-
-  // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
-  $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
+    if ($is_exists) {
+        $errors = array_merge($errors, $is_exists);
+    }
   
-  if ($user) { // if user exists
-    if ($user['username'] === $username) {
-      array_push($errors, "Username already exists");
+    if (count($errors) == 0) {
+        $password = md5($password_1);
+
+        $address = Address::create($address_1, $address_2, $city, 'NCR', 'PH', '');
+        $contact = Contact::create($mobile, '');
+        $user = User::create($firstname, $lastname, $username, $password, $gender, $email, $address, $contact);
+
+        global $db_conn;
+
+        if (!$address->store()) {
+            exit($db_conn->error);
+        }
+
+        if (!$contact->store()) {
+            exit($db_conn->error);
+        }
+
+        if (!$user->store()) {
+            exit($db_conn->error);
+        }
+
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['logged_in'] = TRUE;
+
+        header('location: /');
     }
-
-    if ($user['email'] === $email) {
-      array_push($errors, "email already exists");
-    }
-  }
-
-  // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
-
-  	$query = "INSERT INTO users (firstname, lastname, username, email, passwordhash) 
-  			  VALUES('$firstname', '$lastname', '$username', '$email', '$password')";
-  	$query2 = "INSERT INTO address (addressline_1, addressline_2) 
-  			  VALUES('$address_1', '$address_2')";
-  	$query3 = "INSERT INTO contacts (mobileno) 
-  			  VALUES('$mobile')";
-  	mysqli_query($db, $query);
-  	mysqli_query($db, $query2);
-  	mysqli_query($db, $query3);
-  	$_SESSION['username'] = $username;
-  	$_SESSION['logged in'] = "You are now logged in";
-  	header('location: index.php');
-  }
 }
