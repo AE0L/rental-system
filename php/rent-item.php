@@ -53,6 +53,7 @@ function create_rent_item($item_name, $price, $description, $category, $location
 
     if ($location === 'custom') {
         $address = Address::create($custom_add, '', $custom_city, 'NCR', 'PH', '');
+        $address->store();
     } else {
         $address = User::retrieve($_SESSION['user_id'])->address;
     }
