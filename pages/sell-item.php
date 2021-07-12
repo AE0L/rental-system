@@ -35,6 +35,10 @@
 
         $rent_item = create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
 
+        if (!$rent_item) {
+            die('problem line:39');
+        }
+
         $rent_item->store();
 
         if(!$rent_item) {

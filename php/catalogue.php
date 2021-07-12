@@ -32,6 +32,14 @@ class Catalogue {
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
 
+            $test = RentItem::retrieve($row['rent_item_id']);
+
+            if (!$test) {
+                global $db_conn;
+
+                die($db_conn->error);
+            }
+
             return new Catalogue($row['catalogue_id'], Seller::retrieve($row['seller_id']), RentItem::retrieve($row['rent_item_id']), $row['available'], $row['post_date']);
         }
 
