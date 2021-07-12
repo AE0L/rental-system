@@ -1,6 +1,7 @@
 <?php
 
 require_once 'header.php';
+require_once 'rent-item.php';
 
 function upload_preview_pics(RentItem $rent_item) {
     if (!empty($_FILES)) {
@@ -40,6 +41,19 @@ class PreviewPic {
         $id = generate_db_id('PP');
 
         return new PreviewPic($id, $rent_item, $img, $type);
+    }
+
+    static function retrieve($id) {
+        $sql = "SELECT * FROM preview_pics WHERE preview_pics.preview_pics_id='{$id}'";
+        $result = db_query($sql);
+        
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+
+            return new PreviewPic($row['preview_pics_id'], RentItem::retrieve($row['rent_item_id']), $row['preview_img'], $row['img_type']);
+        }
+
+        return false;
     }
 
     static function get_all_rent_item_pics($id) {

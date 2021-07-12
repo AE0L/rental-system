@@ -1,37 +1,3 @@
-// const carousel = document.getElementById('carousel')
-// const carousel_left = document.getElementById('carousel-left')
-// const carousel_right = document.getElementById('carousel-right')
-// const slides = carousel.childElementCount
-// let current_slide = 1;
-
-// carousel_left.onclick = () => {
-//     if (current_slide > 1) {
-//         current_slide -= 1
-//         el(`slide-${current_slide}`).scrollIntoView(false)
-//     }
-
-//     console.log(current_slide)
-// }
-
-// carousel_right.onclick = () => {
-//     if (current_slide < slides) {
-//         current_slide += 1
-//         el(`slide-${current_slide}`).scrollIntoView(false)
-//     }
-
-//     console.log(current_slide)
-// }
-
-// window.onload = () => {
-//     carousel.style.width = `${carousel.clientWidth}px`
-//     const slides = document.getElementsByClassName('slide')
-
-//     Array.from(slides).forEach(slide => {
-//         console.log(`${carousel.clientWidth}px`)
-//         slide.style.width = `${carousel.clientWidth}px`
-//     })
-// }
-
 var slideIndex = 1;
 showSlides(slideIndex);
 

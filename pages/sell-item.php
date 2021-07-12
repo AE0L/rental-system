@@ -11,10 +11,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         db_connect();
-        $rent_item = upload_rent_item();
+        $item = upload_rent_item();
         db_close();
 
-        $id = preg_replace('/^RI-ID-/', '', $rent_item->id);
+        $id = preg_replace('/^CAT-ID-/', '', $item->id);
 
         header("Location: /pages/item-view?item={$id}");
     }
@@ -131,7 +131,7 @@
 
         upload_preview_pics($rent_item);
 
-        return $rent_item;
+        return $catalogue;
     }
 ?>
 

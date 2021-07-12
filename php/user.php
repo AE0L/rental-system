@@ -17,8 +17,8 @@ class User {
 
     function __construct($id, $firstname, $lastname, $username, $password, $gender, $email, Address $address, Contact $contact) {
         $this->id = $id;
-        $this->first_name = $firstname;
-        $this->last_name = $lastname;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
         $this->username = $username;
         $this->password = $password;
         $this->gender = $gender;
