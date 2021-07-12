@@ -6,13 +6,17 @@
     require_once '../php/preview-pic.php';
 
     // TESTING
-    // $_SESSION['user_id'] = 'U-ID-12345';
+    $_SESSION['user_id'] = 'U-ID-12345';
     // =======
 
-    db_connect();
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        upload_rent_item();
+        db_connect();
+        $rent_item = upload_rent_item();
+        db_close();
+
+        $id = preg_replace('/^RI-ID-/', '', $rent_item->id);
+
+        header("Location: /pages/item-view?item={$id}");
     }
 
     function upload_rent_item() {
@@ -31,6 +35,8 @@
 
         $rent_item = create_rent_item($item_name, $base_price, $item_description, $category, $location, $custom_add, $custom_city);
 
+        $rent_item->store();
+
         if(!$rent_item) {
             die('invalid rent item id');
             return false;
@@ -40,36 +46,36 @@
             $app_type = clean_input($_POST['app-type']);
             $app_cond = clean_input($_POST['app-condition']);
 
-            $appliance = new Appliance($rent_item, $app_type, $app_cond);
-            create_appliances($appliance);
+            $appliance = Appliance::create($rent_item, $app_type, $app_cond);
+            $appliance->store();
         } else if ($category === 'other') {
             $other_type = clean_input($_POST['other-type']);
             $other_cond = clean_input($_POST['other-condition']);
 
-            $other = new Other($rent_item, $other_type, $other_cond);
-            create_others($other);
+            $other = Other::create($rent_item, $other_type, $other_cond);
+            $other->store();
         } else if ($category === 'furniture') {
             $furn_type = clean_input($_POST['furn-type']);
             $furn_cond = clean_input($_POST['furn-condition']);
 
-            $furniture = new Furniture($rent_item, $furn_type, $furn_cond);
-            create_furniture($furniture);
+            $furniture = Furniture::create($rent_item, $furn_type, $furn_cond);
+            $furniture->store();
         } else if ($category === 'm-cloth') {
             $m_cloth_type = clean_input($_POST['m-cloth-type']);
             $m_cloth_brand = clean_input($_POST['m-cloth-brand']);
             $m_cloth_size = clean_input($_POST['m-cloth-size']);
             $m_cloth_cond = clean_input($_POST['m-cloth-condition']);
 
-            $clothing = new Clothing($rent_item, 'M', $m_cloth_type, $m_cloth_size, $m_cloth_brand, $m_cloth_cond);
-            create_clothing($clothing);
+            $clothing = Clothing::create($rent_item, 'M', $m_cloth_type, $m_cloth_size, $m_cloth_brand, $m_cloth_cond);
+            $clothing->store();
         } else if ($category === 'w-cloth') {
             $w_cloth_type = clean_input($_POST['w-cloth-type']);
             $w_cloth_brand = clean_input($_POST['w-cloth-brand']);
             $w_cloth_size = clean_input($_POST['w-cloth-size']);
             $w_cloth_cond = clean_input($_POST['w-cloth-condition']);
 
-            $clothing = new Clothing($rent_item, 'W', $w_cloth_type, $w_cloth_size, $w_cloth_brand, $w_cloth_cond);
-            create_clothing($clothing);
+            $clothing = Clothing::create($rent_item, 'W', $w_cloth_type, $w_cloth_size, $w_cloth_brand, $w_cloth_cond);
+            $clothing->store();
         } else if ($category === 'vehicle') {
             $car_type = clean_input($_POST['car-type']);
             $car_year = clean_input($_POST['car-year']);
@@ -79,8 +85,8 @@
             $car_fuel = clean_input($_POST['car-fuel']);
             $car_plate = clean_input($_POST['car-plate']);
 
-            $vehicle = new Vehicle($rent_item, $car_type, $car_manufacturer, $car_year, $car_model, $car_transmission, $car_fuel, $car_plate);
-            create_vehicle($vehicle);
+            $vehicle = Vehicle::create($rent_item, $car_type, $car_manufacturer, $car_year, $car_model, $car_transmission, $car_fuel, $car_plate);
+            $vehicle->store();
         } else if ($category === 'property') {
             $prop_type = clean_input($_POST['prop-type']);
             $min_floor = null;
@@ -109,15 +115,24 @@
                 $pet = clean_input($_POST['allow-pet']);
             }
 
-            $property = new Property($rent_item, $prop_type, $min_floor, $max_floor, $min_lot, $max_lot, $bedroom, $bathroom, $parking, $pet);
-            create_property($property);
+            $property = Property::create($rent_item, $prop_type, $min_floor, $max_floor, $min_lot, $max_lot, $bedroom, $bathroom, $parking, $pet);
+            $property->store();
         }
 
-        add_rent_item_to_catalogue($_SESSION['user_id'], $rent_item, date("Y-m-d H:i:s"));
-        upload_preview_pics($rent_item);
-    }
+        $seller = Seller::retrieve_by_user($_SESSION['user_id']);
 
-    db_close();
+        if ($seller === FALSE) {
+            $seller = Seller::create(User::retrieve($_SESSION['user_id']));
+        }
+
+        $catalogue = Catalogue::create($seller, $rent_item, true, date('Y-m-d H:i:s'));
+
+        $catalogue->store();
+
+        upload_preview_pics($rent_item);
+
+        return $rent_item;
+    }
 ?>
 
 <!DOCTYPE html>

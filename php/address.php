@@ -1,5 +1,7 @@
 <?php
 
+require_once 'header.php';
+
 class Address {
     public $id;
     public $line_1;
@@ -10,7 +12,7 @@ class Address {
     public $zip;
 
     function __construct($id, $line_1, $line_2, $city, $province, $country, $zip) {
-        $this->id = $id === null ? generate_db_id('A') : $id;
+        $this->id = $id;
         $this->line_1 = $line_1;
         $this->line_2 = $line_2;
         $this->city = $city;
@@ -19,8 +21,14 @@ class Address {
         $this->zip = $zip;
     }
 
-    static function retrieve_address($id) {
-        $sql = "SELECT * FROM address WHERE address.id='{$id}'";
+    static function create($line_1, $line_2, $city, $province, $country, $zip) {
+        $id = generate_db_id('A');
+
+        return new Address($id, $line_1, $line_2, $city, $province, $country, $zip);
+    }
+
+    static function retrieve($id) {
+        $sql = "SELECT * FROM address WHERE address.address_id='{$id}'";
 
         $result = db_query($sql);
 
@@ -29,9 +37,11 @@ class Address {
 
             return new Address($row['address_id'], $row['addressline_1'], $row['addressline_2'], $row['city'], $row['province'], $row['country'], $row['zip']);
         }
+
+        return false;
     }
 
-    public function store_to_db() {
+    public function store() {
         $sql = "INSERT INTO address
         (address_id, addressline_1, addressline_2, city, province, country, zip)
         VALUES ('{$this->id}', '{$this->line_1}', '{$this->line_2}', '{$this->city}', '{$this->province}', '{$this->country}', '{$this->zip}');";
