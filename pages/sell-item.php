@@ -6,7 +6,7 @@
     require_once '../php/preview-pic.php';
 
     // TESTING
-    $_SESSION['user_id'] = 'U-ID-12123';
+    $_SESSION['user_id'] = 'U-ID-12345';
     // =======
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -123,6 +123,7 @@
 
         if ($seller === FALSE) {
             $seller = Seller::create(User::retrieve($_SESSION['user_id']));
+            $seller->store();
         }
 
         $catalogue = Catalogue::create($seller, $rent_item, true, date('Y-m-d H:i:s'));
