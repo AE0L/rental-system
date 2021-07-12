@@ -164,7 +164,7 @@
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
 
-                return new Furniture($row['furniture_id'], RentItem::retrieve($row['rent_item_id']), $row['item_type'], $row['item_condition']);
+                return new Furniture($row['furniture_id'], RentItem::retrieve($row['rent_item_id']), $row['furniture_type'], $row['furniture_condition']);
             }
 
             return false;
