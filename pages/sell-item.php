@@ -6,7 +6,7 @@
     require_once '../php/preview-pic.php';
 
     // TESTING
-    $_SESSION['user_id'] = 'U-ID-12123';
+    // $_SESSION['user_id'] = 'U-ID-12123';
     // =======
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -173,7 +173,8 @@
                 <label for="base-price">Base Price</label>
                 <div class="base-price-cont">
                     <span class="base-price-php">&#8369;</span>
-                    <input required type="number" name="base_price" id="base-price" placeholder="Enter price here..">
+                    <input required type="number" name="base_price" id="base-price" placeholder="Enter price here.."
+                        step="0.01">
                 </div>
 
                 <label for="item-description">Item Description</label>

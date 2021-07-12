@@ -1,3 +1,7 @@
+<?php
+    require_once '../php/header.php';
+?>
+
 <nav class="nav-bar">
     <span id="ham-menu-btn" class="fas fa-bars"></span>
     <span class="title">
@@ -34,11 +38,24 @@
     </div>
 
     <div class="right-nav-cont">
+        <?php
+            if ($_SESSION['logged_in']) {
+        ?>
+
         <span id="profile-nav"><a href="/pages/profile">Profile</a></span>
+
+        <?php
+            } else {
+        ?>
+
         <div class="signupin-cont">
             <span id="sign-up"><a href="/pages/signup">Sign up</a></span>
             <span>|</span>
             <span><a href="/pages/login">Login</a></span>
         </div>
+
+        <?php
+            }
+        ?>
     </div>
 </nav>

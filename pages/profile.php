@@ -1,3 +1,15 @@
+<?php
+    require_once '../php/header.php';
+    require_once '../php/user.php';
+    require_once '../php/seller.php';
+
+    $user = User::retrieve($_SESSION['user_id']);
+    $is_seller = Seller::retrieve($user->id);
+
+    if ($is_seller) {
+        $is_seller = true;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,24 +49,27 @@
                         <img src="../img/pic.jpg" id="photo" width="125px" class="desktop-pfp-pic" alt="pfp">
                     </div>
                     <div class="username-cont">
-                        <span class="username">@username</span>
+                        <span class="username">@<?php echo $user->username ?></span>
+
+                        <?php if ($is_seller) { ?>
                         <span class="seller-badge">seller</span>
+                        <?php } ?>
                     </div>
 
                     <hr class="divider">
 
                     <div class="info-cont">
                         <label for="name">Full Name</label>
-                        <span name="name">Juan B. Dela Cruz</span>
+                        <span name="name"><?php echo "{$user->lastname}, {$user->firstname}" ?></span>
 
                         <label for="location">Location</label>
-                        <span name="location">Quezon City</span>
+                        <span name="location"><?php echo $user->address->city ?></span>
 
                         <label for="email">Email</label>
-                        <span name="email">example@email.com</span>
+                        <span name="email"><?php echo $user->email ?></span>
 
                         <label for="contact">Contact</label>
-                        <span name="contact">xxxx-xxx-xxxx</span>
+                        <span name="contact"><?php echo $user->contact->mobile ?></span>
                     </div>
                 </div>
             </div>

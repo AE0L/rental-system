@@ -68,10 +68,6 @@
     margin: 1em;
 }
 
-#profile-nav {
-    display: none;
-}
-
 .signupin-cont {
     display: grid;
     gap: 1em;
