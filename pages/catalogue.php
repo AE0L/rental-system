@@ -186,7 +186,7 @@
             </section>
             <?php
                 $cat = $_GET['category'];
-
+				
                 switch ($cat) {
                     case 'property':
                         change_category('property');
