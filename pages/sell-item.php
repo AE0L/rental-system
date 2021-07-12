@@ -92,7 +92,7 @@
             $vehicle = Vehicle::create($rent_item, $car_type, $car_manufacturer, $car_year, $car_model, $car_transmission, $car_fuel, $car_plate);
             $vehicle->store();
         } else if ($category === 'property') {
-            $prop_type = clean_input($_POST['prop-type']);
+            $prop_type = $_POST['prop-type'];
             $min_floor = null;
             $max_floor = null;
             $min_lot = null;

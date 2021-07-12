@@ -1,12 +1,12 @@
 .divider {
-    margin: 0em 1.25em;
+    margin: 1em 0 2em 0;
 }
 
 /* ==== */
 
 .gallery-cont {
     width: 100%;
-    height: calc(450px + 1.2em);
+    height: calc(300px + 1.2em);
     position: relative;
 }
 
@@ -59,16 +59,17 @@
     gap: 0.5em;
 }
 
-#rental-price {
-    margin: 0;
-    font-size: 2em;
+.price-cont h2 {
+    margin: 0.5em 0 0 0;
+    font-size: 2.25em;
 }
 
 /* ==== */
 
 main {
+    display: grid;
     padding: 1em 1.25em;
-    justify-items: center;
+    grid-template-columns: 1fr;
 }
 
 .main-section {
@@ -78,7 +79,8 @@ main {
     width: 100%;
 }
 
-.main-section>h4 {
+.main-section h4,
+.aside-section h4 {
     margin: 0;
 }
 
@@ -141,14 +143,95 @@ main {
     box-sizing: border-box;
 }
 
+.desktop {
+    display: none;
+}
+
+.aside-section {
+    grid-template-columns: 1fr;
+    gap: 2em;
+    height: fit-content
+}
+
+.aside-group {
+    display: grid;
+    gap: 1em;
+}
+
 
 /* ==== */
 
 @media only screen and (min-width: 768px) {
-    .name-price-cont {
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
         display: grid;
-        max-width: 1000px;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    footer {
+        margin-top: auto;
+    }
+
+    main {
+        display: grid;
+        max-width: 1440px;
         margin: 0 auto;
+        grid-template-columns: 1fr auto;
+        row-gap: 2em;
+        column-gap: 5em;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 5em;
+    }
+
+    header {
+        overflow: hidden;
+        max-height: 350px;
+    }
+
+    .gallery-cont {
+        max-height: inherit;
+        padding: 2em;
+        box-sizing: border-box;
+    }
+
+    .gallery-cont .carousel {
+        margin: 0 auto;
+        max-width: unset;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    .item-view-return {
+        display: none;
+    }
+
+    .carousel .slides {
+        overflow: hidden;
+    }
+
+    .carousel .carousel-dots {
+        margin: 2em 0 1em 0;
+    }
+
+    .name-price-cont {
+        grid-column: 1/3;
+        padding: 0;
+        display: grid;
+    }
+
+    .divider {
+        grid-column: 1/3;
+        width: 100%;
+        margin: 0;
     }
 
     .price-cont {
@@ -158,33 +241,23 @@ main {
         align-self: center;
     }
 
-    #rental-price {
-        font-size: 2em;
+    .price-cont h2 {
+        font-size: 2.5em;
+        margin: 0;
     }
 
-    #price-per {
-        font-size: 1.25em;
-    }
-
-    .divider {
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    main {
-        max-width: 1000px;
-        margin: 0 auto;
+    .item-info-cont {
         display: grid;
-        grid-template-columns: auto 1fr;
-        column-gap: 2em;
+        grid-template-columns: 1fr;
+        gap: 2em;
     }
 
     .main-features {
-        grid-column: 1/3;
         display: flex;
         column-gap: 2em;
         row-gap: 1em;
         flex-wrap: wrap;
+        justify-content: space-evenly;
     }
 
     .main-section {
