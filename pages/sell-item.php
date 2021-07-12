@@ -6,7 +6,7 @@
     require_once '../php/preview-pic.php';
 
     // TESTING
-    $_SESSION['user_id'] = 'U-ID-12345';
+    $_SESSION['user_id'] = 'U-ID-12123';
     // =======
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
