@@ -29,7 +29,7 @@
                 <div class="signup-cont">
                     <span class="signup-title">Sign up</span>
                     <form method="post" id="signup-form">
-                        <?php include '../php/signuperrors.php'; ?>
+                        <?php include_once '../php/signuperrors.php'; ?>
 
                         <input required type="text" name="firstname" id="first-name" placeholder="First Name">
                         <input required type="text" name="lastname" id="last-name" placeholder="Last Name">
@@ -50,7 +50,7 @@
                         <input type="text" name="address_2" id="address-2" placeholder="Address 2">
                         <input required type="text" name="city" id="city" placeholder="City">
 
-                        <button class="btn" type="submit" formmethod="post">Create Account</button>
+                        <button id="create" class="btn" type="submit" formmethod="post">Create Account</button>
 
                         <div class="login-cont">
                             <div class="login-wrapper">

@@ -1,4 +1,50 @@
+<?php
+session_start();
 
+$errors = array();
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'rental_system';
+// Try and connect using the info above.
+$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+if (isset($_POST['login'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $query = $con->prepare("SELECT user_id, passwordhash FROM users WHERE username = ?");
+    // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+    $query->bind_param('s', $username);
+    $query->execute();
+    // Store the result so we can check if the account exists in the database.
+    $query->store_result();
+    if ($query->num_rows > 0) {
+        $query->bind_result($user_id, $passwordhash);
+        $query->fetch();
+        // Account exists, now we verify the password.
+        // Note: remember to use password_hash in your registration file to store the hashed passwords.
+        if ($password === $passwordhash) {
+            // Verification success! User has logged-in!
+            // Create sessions, so we know the user is logged in, they basically act like cookies but remember the data on the server.
+            session_regenerate_id();
+            $_SESSION['logged_in'] = TRUE;
+            $_SESSION['name'] = $_POST['username'];
+            $_SESSION['id'] = $user_id;
+            header('Location: /');
+        } else {
+            // Incorrect password
+            array_push($errors, "Incorrect password.");
+        }
+    } else {
+        // Incorrect username
+        array_push($errors, "Username or password are incorrect.");
+    }
+        $query->close();
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,10 +83,11 @@
             <div class="wrapper">
                 <div class="login-cont">
                     <span class="logo">rentALL</span>
-                    <form action="" id="login-form">
-                        <input type="text" name="username" id="username" placeholder="Username or Email">
-                        <input type="password" name="password" id="password" placeholder="Password">
-                        <input id="login" type="submit" value="Log in">
+                    <form action="" id="login-form" method="post">
+                        <?php include_once '../php/signuperrors.php'; ?>
+                        <input type="text" name="username" id="username" placeholder="Username" required>
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <button id="login" class="btn" type="submit" formmethod="post" name="login">Login</button>
                         <div class="login-divider">
                             <hr>
                             <span>or</span>
@@ -49,6 +96,8 @@
                    </form>
                 </div>
             </div>
+
+
 
         </main>
 
